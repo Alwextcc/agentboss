@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* app/globals.css 末尾添加 */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInFromBottom {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-in {
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+}
+
+.fade-in {
+  animation-name: fadeIn;
+}
+
+.slide-in-from-bottom {
+  animation-name: slideInFromBottom;
+}
+
+/* 移动端优化 */
+@media (max-width: 640px) {
+  /* 按钮更大，方便触摸 */
+  button, 
+  .touchable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* 字体稍微小一点，但保持可读 */
+  .terminal-container {
+    font-size: 13px;
+  }
+  
+  /* 虚拟按键在手机上更大 */
+  .virtual-key {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+}
+
+/* 安全区域适配（刘海屏） */
+@supports (padding: max(0px)) {
+  .safe-area-top {
+    padding-top: max(env(safe-area-inset-top), 0px);
+  }
+  .safe-area-bottom {
+    padding-bottom: max(env(safe-area-inset-bottom), 0px);
+  }
+}
+
+/* 禁用文本选择（提升触摸体验） */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+/* 允许输入框选择 */
+input, textarea {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #4a4a6a;
+  border-radius: 4px;
+}
+
+/* 虚拟按键在手机上更大 */
+@media (max-width: 640px) {
+  .virtual-key {
+    padding: 10px 8px !important;
+    font-size: 12px !important;
+    min-height: 44px !important;
+  }
+  
+  /* 终端字体 */
+  .xterm .xterm-screen {
+    font-size: 13px !important;
+  }
+  
+  /* 底部输入框 */
+  .terminal-input {
+    font-size: 14px !important;
+    padding: 10px 14px !important;
+  }
+  
+  /* 操作按钮 */
+  .action-button {
+    padding: 8px 12px !important;
+    font-size: 11px !important;
+    min-height: 40px !important;
+  }
+}
+
+/* 安全区域适配 */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 12px);
+}
+
+/* 禁用长按菜单，提升触摸体验 */
+* {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* 允许输入框选择文本 */
+input, textarea, .xterm {
+  -webkit-user-select: text !important;
+  user-select: text !important;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #4a4a6a;
+  border-radius: 3px;
+}
+
+/* 终端容器 - 支持横向和纵向滚动 */
+.terminal-container {
+  overflow: auto !important;
+  position: relative;
+}
+
+.terminal-container .xterm {
+  display: block !important;
+  width: auto !important;
+  min-width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+}
+
+.terminal-container .xterm-screen {
+  width: auto !important;
+  min-width: 100% !important;
+  touch-action: pan-x !important;   /* 横向让浏览器处理，纵向交给我们的手势 */
+}
+
+/* xterm 视口 - 确保纵向滚动可用 */
+.terminal-container .xterm-viewport {
+  overflow-y: auto !important;
+  scrollbar-width: thin;
+  touch-action: pan-y !important;
+}
+
+/* 让 xterm 的行不换行 */
+.terminal-container .xterm-rows {
+  white-space: pre !important;
+  overflow: visible !important;
+}

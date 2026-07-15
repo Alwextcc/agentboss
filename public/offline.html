@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgentBoss - 离线</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 400px;
+    }
+    .icon {
+      font-size: 64px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #2563eb;
+    }
+    p {
+      color: #9ca3af;
+      line-height: 1.6;
+    }
+    .retry-btn {
+      margin-top: 20px;
+      padding: 12px 40px;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .retry-btn:active {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">📡</div>
+    <h1>AgentBoss</h1>
+    <p>当前处于离线状态</p>
+    <p style="font-size: 14px; margin-top: 8px;">请检查网络连接后重试</p>
+    <button class="retry-btn" onclick="location.reload()">重新连接</button>
+  </div>
+</body>
+</html>
